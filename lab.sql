@@ -38,13 +38,9 @@ FROM store;
 Select COUNT(staff_id) FROM staff;
 
 -- 5.3 Determine how many films are available for rent and how many have been rented.
--- find inventory items not currently rented ( not in rental table with return_date IS NULL):
-SELECT COUNT(*) AS available_inventory_items
-FROM inventory i
-LEFT JOIN rental r
-  ON i.inventory_id = r.inventory_id
-  AND r.return_date IS NULL
-WHERE r.rental_id IS NULL;
+
+SELECT COUNT(*) AS total_films FROM film;           
+SELECT COUNT(*) AS total_rental FROM rental;
 
 -- 5.4 Determine the number of distinct last names of the actors in the database.
 
@@ -53,6 +49,7 @@ SELECT COUNT(DISTINCT last_name)  FROM actor;
 
 -- Retrieve the 10 longest films.
 SELECT length, title FROM film
+ORDER BY length DESC
 LIMIT 10;
 -- Use filtering techniques in order to:
 -- 7.1 Retrieve all actors with the first name "SCARLETT".
